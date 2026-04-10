@@ -50,7 +50,7 @@
     .nav__inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 40px;
       width: 100%;
     }
     .nav__logo {
@@ -63,10 +63,12 @@
       gap: 10px;
       line-height: 1.15;
       flex-shrink: 0;
+      white-space: nowrap;
     }
     .nav__logo img {
       height: 40px;
       flex-shrink: 0;
+      order: 2;
     }
     .nav__logo span {
       font-size: 10px;
@@ -77,8 +79,10 @@
     }
     .nav__links {
       display: flex;
-      gap: 32px;
+      gap: 40px;
       list-style: none;
+      flex: 1;
+      justify-content: center;
     }
     .nav__links a {
       font-size: 12px;
@@ -89,6 +93,11 @@
       transition: color 0.15s;
     }
     .nav__links a:hover { color: var(--text); }
+
+    .nav__cta {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
 
     /* Dropdown menu styles */
     .nav__item {
@@ -889,8 +898,8 @@
   <div class="container">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">
+        <span><span>АО «Победит»</span></span>
         <img src="ao-pobedit-ord--600.svg" alt="АО Победит">
-        АО «Победит»
       </a>
       <ul class="nav__links" id="navMenu">
         <li class="nav__item">
@@ -918,7 +927,7 @@
         <span></span>
         <span></span>
       </button>
-      <a href="/rfq.html" class="btn btn-primary">Запросить КП</a>
+      <a href="/rfq.html" class="btn btn-primary nav__cta">Запросить КП</a>
     </div>
   </div>
 </nav>
