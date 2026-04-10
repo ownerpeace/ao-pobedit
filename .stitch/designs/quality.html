@@ -35,7 +35,7 @@
     /* ─── NAV ─── */
     .nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); height: 68px; display: flex; align-items: center; }
     .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .nav__logo { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); display: flex; flex-direction: column; line-height: 1.15; }
+    .nav__logo { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); display: flex; align-items: center; gap: 10px; line-height: 1.15; flex-shrink: 0; }
     .nav__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); }
     .nav__links { display: flex; gap: 32px; list-style: none; }
     .nav__links a { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); transition: color 0.15s; }
@@ -139,13 +139,10 @@
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
-        <div>
-          АО «Победит»
-        </div>
-      </a>
-      <ul class="nav__links" id="navMenu">
+      <a href="index.html" class="nav__logo">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит">
+        АО «Победит»
+      </a>      <ul class="nav__links" id="navMenu">
         <li class="nav__item">
           <a href="/products.html">Продукция</a></li>
         <li><a href="/industries.html">Отрасли</a></li>

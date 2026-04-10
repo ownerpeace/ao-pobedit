@@ -54,13 +54,19 @@
       width: 100%;
     }
     .nav__logo {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       letter-spacing: -0.01em;
       color: var(--text);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 10px;
       line-height: 1.15;
+      flex-shrink: 0;
+    }
+    .nav__logo img {
+      height: 40px;
+      flex-shrink: 0;
     }
     .nav__logo span {
       font-size: 10px;
@@ -882,11 +888,9 @@
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
-        <div>
-          АО «Победит»
-        </div>
+      <a href="index.html" class="nav__logo">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит">
+        АО «Победит»
       </a>
       <ul class="nav__links" id="navMenu">
         <li class="nav__item">
