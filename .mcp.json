@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "command": "/bin/bash",
+      "args": ["/Users/vladimir/.stitch-mcp/stitch-proxy.sh"]
+    }
+  }
+}

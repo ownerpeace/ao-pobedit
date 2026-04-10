@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АО «Победит» — Изделия из вольфрама, молибдена и твёрдых сплавов</title>
+  <link rel="icon" type="image/svg+xml" href="ao-pobedit-ord--600.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0B1728;
+      --navy-d:  #1E2D42;
+      --offwhite:#F5F5F3;
+      --slate50: #F0F2F5;
+      --text:    #111827;
+      --text2:   #6B7280;
+      --text3:   #9CA3AF;
+      --amber:   #D97706;
+      --blue:    #2563EB;
+      --border:  #E5E7EB;
+      --cont:    1280px;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--cont);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── NAVIGATION ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .nav__logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .nav__logo span {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text2);
+      transition: color 0.15s;
+    }
+    .nav__links a:hover { color: var(--text); }
+
+    /* Dropdown menu styles */
+    .nav__item {
+      position: relative;
+    }
+    .nav__submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      min-width: 180px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.2s ease;
+      margin-top: 8px;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .nav__item:hover .nav__submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .nav__submenu li {
+      list-style: none;
+    }
+    .nav__submenu a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 13px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text2);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav__submenu a:hover {
+      background: var(--slate50);
+      color: var(--text);
+    }
+    .nav__submenu li:first-child a {
+      border-radius: 3px 3px 0 0;
+    }
+    .nav__submenu li:last-child a {
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* Mobile menu toggle */
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+    }
+    .nav__toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: #fff;
+      border: 1.5px solid var(--amber);
+    }
+    .btn-primary:hover { background: #B45309; border-color: #B45309; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--text);
+    }
+    .btn-secondary:hover { background: var(--text); color: #fff; }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.6);
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-lg { padding: 14px 32px; font-size: 15px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      padding: 120px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Technical grid overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+    /* Structural accent line */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--amber);
+    }
+    .hero__inner { position: relative; z-index: 1; }
+    .hero__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+    }
+    .hero__label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+    .hero__sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+    .hero__cta {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+    .hero__trust {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--navy-d);
+      padding-top: 36px;
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-right: 40px;
+      margin-right: 40px;
+      border-right: 1px solid var(--navy-d);
+    }
+    .trust-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .trust-item__val {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .trust-item__lbl {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid var(--navy-d);
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .trust-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding-left: 40px;
+      margin-left: 0;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text2);
+      max-width: 520px;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+    .link-arrow {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.15s;
+    }
+    .link-arrow:hover { gap: 10px; }
+
+    /* ─── CATALOG ─── */
+    .catalog { background: #fff; }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .catalog-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .catalog-card:hover {
+      border-color: var(--amber);
+      box-shadow: 0 2px 12px rgba(217,119,6,0.1);
+    }
+    .catalog-card__num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 20px;
+      font-variant-numeric: tabular-nums;
+    }
+    .catalog-card__icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+    .catalog-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .catalog-card p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text2);
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .catalog-card__specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .spec-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--slate50);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ─── INDUSTRIES ─── */
+    .industries { background: var(--slate50); }
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .industry-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.15s;
+    }
+    .industry-item:hover { border-color: var(--text2); cursor: pointer; }
+    .industry-item__icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--text2);
+    }
+    .industry-item__name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    /* ─── TRUST / WHY ─── */
+    .trust-section { background: var(--navy); }
+    .trust-section .section-title { color: #fff; }
+    .trust-section .section-label { color: var(--amber); }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--navy-d);
+      border: 1px solid var(--navy-d);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .trust-card {
+      background: var(--navy);
+      padding: 36px 28px;
+    }
+    .trust-card__icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 20px;
+      color: var(--amber);
+    }
+    .trust-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .trust-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── DOCS ─── */
+    .docs-section { background: #fff; }
+    .docs-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 48px 56px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--slate50);
+    }
+    .docs-inner__left {}
+    .docs-inner__left h3 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .docs-inner__left p {
+      font-size: 16px;
+      color: var(--text2);
+      max-width: 460px;
+    }
+    .docs-types {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .doc-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--navy);
+      padding: 80px 0;
+      position: relative;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .cta-band__inner {
+      position: relative;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .cta-band p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 36px;
+    }
+    .cta-band__buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-d);
+      padding: 64px 0 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.4);
+      margin-top: 12px;
+      max-width: 260px;
+    }
+    .footer-brand__logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .footer-brand__logo span {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-col h5 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.15s;
+    }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--navy-d);
+    }
+    .footer-bottom p, .footer-bottom a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+    .footer-legal { display: flex; gap: 24px; }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* SVG icon helper */
+    .icon { display: inline-block; flex-shrink: 0; }
+
+    /* ─── MOBILE RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 24px;
+      }
+      .hero h1 {
+        font-size: 44px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .industries-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+      .container {
+        padding: 0 16px;
+      }
+
+      /* Navigation mobile */
+      .nav {
+        height: auto;
+        padding: 12px 0;
+      }
+      .nav__toggle {
+        display: block;
+        order: 3;
+      }
+      .nav__inner {
+        width: 100%;
+        gap: 16px;
+      }
+      .nav__logo {
+        flex: 1;
+        font-size: 14px;
+      }
+      .nav__logo img {
+        height: 32px !important;
+      }
+      .nav__links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav__links.active {
+        display: flex;
+      }
+      .nav__links li {
+        border-bottom: 1px solid var(--border);
+      }
+      .nav__links li:last-child {
+        border-bottom: none;
+      }
+      .nav__links a {
+        display: block;
+        padding: 12px 16px;
+      }
+      .nav__submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 8px 0 8px 24px;
+        background: var(--slate50);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nav__submenu.active {
+        max-height: 500px;
+      }
+      .nav__submenu a {
+        font-size: 12px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 60px 0 40px;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero__cta {
+        flex-direction: column;
+      }
+      .hero__trust {
+        flex-direction: column;
+        gap: 24px;
+        border: none;
+        padding: 0;
+      }
+      .trust-item {
+        padding: 0;
+        margin: 0;
+        border: none;
+      }
+
+      /* Sections */
+      section {
+        padding: 40px 0;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+      .section-head {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Catalog grid */
+      .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .catalog-card {
+        padding: 24px;
+      }
+
+      /* Industries grid */
+      .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      /* Trust grid */
+      .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .trust-card {
+        padding: 24px;
+      }
+
+      /* Docs section */
+      .docs-inner {
+        flex-direction: column;
+        padding: 32px 24px;
+      }
+      .docs-inner__left {
+        margin-bottom: 24px;
+      }
+
+      /* CTA band */
+      .cta-band {
+        padding: 40px 0;
+      }
+      .cta-band h2 {
+        font-size: 24px;
+      }
+      .cta-band__buttons {
+        flex-direction: column;
+      }
+
+      /* Footer */
+      footer {
+        padding: 40px 0 32px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-legal {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      /* Buttons */
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html { font-size: 13px; }
+      .container {
+        padding: 0 12px;
+      }
+
+      .nav__logo {
+        font-size: 12px;
+      }
+      .nav__logo img {
+        height: 28px !important;
+        margin-right: 6px !important;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      .hero__sub {
+        font-size: 14px;
+      }
+
+      .section-title {
+        font-size: 20px;
+      }
+      .hero__label {
+        font-size: 10px;
+      }
+
+      .catalog-card {
+        padding: 16px;
+      }
+      .catalog-card h3 {
+        font-size: 18px;
+      }
+
+      .industries-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-band h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
+        <div>
+          АО «Победит»
+          <span>Твёрдые сплавы · Инструмент · Изделия</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navMenu">
+        <li class="nav__item">
+          <a href="/products.html">Продукция</a>
+          <ul class="nav__submenu">
+            <li><a href="catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+            <li><a href="catalog-hard-alloys.html">Тугоплавкие металлы</a></li>
+            <li><a href="catalog-hard-alloys.html">Тяжёлые сплавы</a></li>
+          </ul>
+        </li>
+        <li><a href="/industries.html">Отрасли</a></li>
+        <li><a href="/about.html">О заводе</a></li>
+        <li class="nav__item">
+          <a href="document.html">Документация</a>
+          <ul class="nav__submenu">
+            <li><a href="document.html#gost">ГОСТ</a></li>
+            <li><a href="document.html#tu">Технические условия</a></li>
+            <li><a href="document.html#certs">Сертификаты</a></li>
+          </ul>
+        </li>
+        <li><a href="/contacts.html">Контакты</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/rfq.html" class="btn btn-primary">Запросить КП</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__label">Промышленный производитель</div>
+      <h1>Изделия из вольфрама, молибдена и твёрдых сплавов&nbsp;— с&nbsp;1948&nbsp;года</h1>
+      <p class="hero__sub">АО «Победит» — российский производитель тугоплавких металлов, твёрдых и тяжёлых сплавов. Собственное производство, технический контроль по ГОСТ/ТУ, поставки в ведущие отрасли промышленности.</p>
+      <div class="hero__cta">
+        <a href="/products.html" class="btn btn-primary btn-lg">Каталог продукции</a>
+        <a href="/rfq.html" class="btn btn-ghost btn-lg">Запросить КП</a>
+      </div>
+      <div class="hero__trust">
+        <div class="trust-item">
+          <div class="trust-item__val">70+</div>
+          <div class="trust-item__lbl">лет в отрасли</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item__val">3</div>
+          <div class="trust-item__lbl">направления продукции</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item__val">8+</div>
+          <div class="trust-item__lbl">отраслей применения</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-badges">
+            <span class="trust-badge">ГОСТ</span>
+            <span class="trust-badge">ISO</span>
+            <span class="trust-badge">ТУ</span>
+            <span class="trust-badge">Владикавказ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CATALOG ═══ -->
+<section class="catalog">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Продукция</div>
+        <h2 class="section-title">Три направления каталога</h2>
+        <p class="section-desc">Полный цикл производства — от сырья до готовых изделий. Технические консультации по выбору марки и сортамента.</p>
+      </div>
+      <a href="/products.html" class="link-arrow">Весь каталог →</a>
+    </div>
+    <div class="catalog-grid">
+
+      <!-- Твёрдые сплавы -->
+      <div class="catalog-card">
+        <div class="catalog-card__num">01</div>
+        <h3>Твёрдые сплавы</h3>
+        <p>Спечённые металлокерамические материалы на основе карбидов вольфрама. Высокая твёрдость, износостойкость, работа при экстремальных нагрузках. Марки ВК, ТК, ТТК.</p>
+        <div class="catalog-card__specs">
+          <span class="spec-tag">ВК6</span>
+          <span class="spec-tag">ВК8</span>
+          <span class="spec-tag">Т5К10</span>
+          <span class="spec-tag">Т15К6</span>
+          <span class="spec-tag">ТТ10К8Б</span>
+        </div>
+        <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+      </div>
+
+      <!-- Тугоплавкие металлы -->
+      <div class="catalog-card">
+        <div class="catalog-card__num">02</div>
+        <h3>Тугоплавкие металлы</h3>
+        <p>Изделия из вольфрама и молибдена: прутки, листы, проволока, тигли, трубки. Температура применения — до 2 000 °C и выше. Соответствие ГОСТ и ТУ.</p>
+        <div class="catalog-card__specs">
+          <span class="spec-tag">Вольфрам W</span>
+          <span class="spec-tag">Молибден Mo</span>
+          <span class="spec-tag">Листы</span>
+          <span class="spec-tag">Прутки</span>
+          <span class="spec-tag">Проволока</span>
+        </div>
+        <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+      </div>
+
+      <!-- Тяжёлые сплавы -->
+      <div class="catalog-card">
+        <div class="catalog-card__num">03</div>
+        <h3>Тяжёлые сплавы</h3>
+        <p>Вольфрам-никель-медные и вольфрам-никель-железные сплавы плотностью 17–18,5 г/см³. Применяются как балансировочные грузы, защитные экраны, детали точного приборостроения.</p>
+        <div class="catalog-card__specs">
+          <span class="spec-tag">ВНЖ-90</span>
+          <span class="spec-tag">ВНЖ-95</span>
+          <span class="spec-tag">ВНМ-95</span>
+          <span class="spec-tag">ВГ-15</span>
+        </div>
+        <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INDUSTRIES ═══ -->
+<section class="industries">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Применение</div>
+        <h2 class="section-title">Отрасли применения</h2>
+      </div>
+      <a href="/industries.html" class="link-arrow">Все отрасли →</a>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-item">
+        <span class="industry-item__name">Нефтегаз</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Металлургия</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Машиностроение</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">ВПК / Оборонная</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Авиация</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Энергетика</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Горнодобывающая</span>
+      </div>
+      <div class="industry-item">
+        <span class="industry-item__name">Инструментальное производство</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST / WHY ПОБЕДИТ ═══ -->
+<section class="trust-section">
+  <div class="container">
+    <div class="section-head" style="margin-bottom: 40px;">
+      <div>
+        <div class="section-label">Почему Победит</div>
+        <h2 class="section-title">Надёжный партнёр для промышленного производства</h2>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <h4>Собственное производство</h4>
+        <p>Полный цикл — от переработки сырья до готовой продукции. Никакой перепродажи. Контроль качества на каждом этапе.</p>
+      </div>
+      <div class="trust-card">
+        <h4>70+ лет в отрасли</h4>
+        <p>С 1948 года. Накопленные технологические компетенции, проверенные марки, доверие ведущих российских предприятий.</p>
+      </div>
+      <div class="trust-card">
+        <h4>Контроль качества ГОСТ/ТУ</h4>
+        <p>Вся продукция соответствует актуальным ГОСТ и ТУ. Паспорта качества, сертификаты и протоколы испытаний — в открытом доступе.</p>
+      </div>
+      <div class="trust-card">
+        <h4>Технические консультации</h4>
+        <p>Специалисты помогут выбрать марку, сортамент и форму поставки под конкретную задачу. Индивидуальный подход к техническому запросу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOCS / CERTIFICATIONS ═══ -->
+<section class="docs-section">
+  <div class="container">
+    <div class="docs-inner">
+      <div class="docs-inner__left">
+        <div class="section-label">Документация</div>
+        <h3>Вся документация открыта</h3>
+        <p>ГОСТ, технические условия, сертификаты соответствия, паспорта на продукцию — в открытом доступе без регистрации.</p>
+        <div class="docs-types">
+          <span class="doc-type">
+            ГОСТ
+          </span>
+          <span class="doc-type">ТУ</span>
+          <span class="doc-type">Сертификаты</span>
+          <span class="doc-type">Паспорта</span>
+        </div>
+      </div>
+      <a href="document.html" class="btn btn-secondary btn-lg">Перейти к документации</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__inner">
+      <h2>Нужна консультация или<br>коммерческое предложение?</h2>
+      <p>Ответим на технический запрос и подберём подходящую марку под вашу задачу.</p>
+      <div class="cta-band__buttons">
+        <a href="/rfq.html" class="btn btn-primary btn-lg">Запросить КП</a>
+        <a href="/contacts.html" class="btn btn-ghost btn-lg">Написать нам</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">
+          АО «Победит»
+          <span>с 1948 года</span>
+        </div>
+        <p>Производитель изделий из вольфрама, молибдена, твёрдых и тяжёлых сплавов. г. Владикавказ, Республика Северная Осетия — Алания.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Продукция</h5>
+        <ul>
+          <li><a href="catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тугоплавкие металлы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тяжёлые сплавы</a></li>
+          <li><a href="/products.html">Весь каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="/about.html">О заводе</a></li>
+          <li><a href="/production">Производство</a></li>
+          <li><a href="/quality.html">Контроль качества</a></li>
+          <li><a href="/news.html">Новости</a></li>
+          <li><a href="contacts.html">Карьера</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Документация</h5>
+        <ul>
+          <li><a href="document.html">Все документы</a></li>
+          <li><a href="quality.html#gost">ГОСТ</a></li>
+          <li><a href="quality.html#tu">Технические условия</a></li>
+          <li><a href="quality.html#certs">Сертификаты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="/contacts.html">Контакты</a></li>
+          <li><a href="/rfq.html">Запрос КП</a></li>
+          <li><a href="/partners">Партнёрам</a></li>
+          <li><a href="/industries.html">Отрасли</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 АО «Победит». Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="contacts.html">Правовая информация</a>
+        <a href="/legal/privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  navToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+  });
+
+  // Close menu when link clicked
+  const navLinks = navMenu.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navMenu.classList.remove('active');
+    });
+  });
+
+  // Handle submenu toggle on mobile
+  const navItems = navMenu.querySelectorAll('.nav__item');
+  navItems.forEach(item => {
+    const link = item.querySelector('a');
+    const submenu = item.querySelector('.nav__submenu');
+
+    if (submenu) {
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          submenu.classList.toggle('active');
+        }
+      });
+    }
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.nav')) {
+      navMenu.classList.remove('active');
+      const submenus = navMenu.querySelectorAll('.nav__submenu');
+      submenus.forEach(submenu => {
+        submenu.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

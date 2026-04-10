@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отрасли применения — АО «Победит»</title>
+  <link rel="icon" type="image/svg+xml" href="ao-pobedit-ord--600.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:    #0B1728;
+      --navy-d:  #1E2D42;
+      --offwhite:#F5F5F3;
+      --slate50: #F0F2F5;
+      --text:    #111827;
+      --text2:   #6B7280;
+      --text3:   #9CA3AF;
+      --amber:   #D97706;
+      --amber-bg:#FFFBEB;
+      --amber-lt:#FEF3C7;
+      --green:   #16A34A;
+      --border:  #E5E7EB;
+      --border2: #D1D5DB;
+      --cont:    1280px;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--cont); margin: 0 auto; padding: 0 40px; }
+
+    /* ─── NAV ─── */
+    .nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); height: 68px; display: flex; align-items: center; }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav__logo { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); display: flex; flex-direction: column; line-height: 1.15; }
+    .nav__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); }
+    .nav__links { display: flex; gap: 32px; list-style: none; }
+    .nav__links a { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); transition: color 0.15s; }
+    .nav__links a:hover { color: var(--text); }
+    .nav__links a.active { color: var(--text); border-bottom: 2px solid var(--amber); padding-bottom: 2px; }
+    .btn { display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 600; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+    .btn-primary { background: var(--amber); color: #fff; border: 1.5px solid var(--amber); }
+    .btn-primary:hover { background: #B45309; border-color: #B45309; }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--text); }
+    .btn-secondary:hover { background: var(--text); color: #fff; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-lg { padding: 14px 32px; font-size: 15px; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header { background: var(--offwhite); padding: 44px 0 48px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--text2); transition: color 0.15s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb__sep { color: var(--text3); }
+    .breadcrumb__current { color: var(--text); font-weight: 500; }
+    .page-header__inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
+    .page-header h1 { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+    .page-header__desc { font-size: 17px; color: var(--text2); max-width: 580px; line-height: 1.7; }
+    .page-header__stat { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .page-header__stat-val { font-family: var(--mono); font-size: 40px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+    .page-header__stat-lbl { font-size: 12px; color: var(--text2); text-align: right; }
+
+    /* ─── SECTION COMMONS ─── */
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+    .section-title { font-size: 32px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+    .link-arrow { font-size: 14px; font-weight: 600; color: var(--amber); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.15s; }
+    .link-arrow:hover { gap: 10px; }
+
+    /* ─── INDUSTRY GRID ─── */
+    .industries-section { padding: 64px 0 80px; background: var(--offwhite); }
+    .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+
+    .industry-card {
+      background: #fff;
+      padding: 28px 28px 24px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .industry-card:hover { background: var(--amber-bg); }
+    .industry-card:hover .industry-card__icon { color: var(--amber); }
+
+    .industry-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .industry-card__icon { width: 32px; height: 32px; flex-shrink: 0; color: var(--text3); transition: color 0.15s; }
+    .industry-card__num { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.06em; }
+
+    .industry-card h3 { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .industry-card p { font-size: 13px; color: var(--text2); line-height: 1.65; flex: 1; }
+
+    .product-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ptag {
+      display: inline-block; padding: 3px 8px;
+      background: var(--slate50); border: 1px solid var(--border);
+      border-radius: 2px; font-size: 11px; font-weight: 500;
+      color: var(--text2); font-family: var(--mono);
+    }
+    .industry-card:hover .ptag { background: #fff; }
+
+    /* ─── MATRIX TABLE ─── */
+    .matrix-section { padding: 80px 0; background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .matrix-layout { display: grid; grid-template-columns: 1fr 480px; gap: 64px; align-items: start; }
+    .matrix-intro p { font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 20px; }
+
+    .matrix-table { width: 100%; border-collapse: collapse; }
+    .matrix-table thead tr { background: var(--slate50); border-bottom: 2px solid var(--border2); }
+    .matrix-table th {
+      padding: 11px 16px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2);
+      text-align: left;
+    }
+    .matrix-table th.center { text-align: center; }
+    .matrix-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); vertical-align: middle; }
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table tr:hover td { background: var(--amber-bg); }
+    .matrix-table td.center { text-align: center; }
+
+    .matrix-dot { font-size: 16px; color: var(--amber); }
+    .matrix-dash { font-size: 16px; color: var(--border2); }
+    .matrix-industry { display: flex; align-items: center; gap: 10px; }
+    .matrix-industry__icon { width: 18px; height: 18px; color: var(--text3); flex-shrink: 0; }
+
+    /* ─── FEATURED INDUSTRY ─── */
+    .featured-section { padding: 80px 0; background: var(--slate50); }
+    .featured-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .featured-card__header {
+      background: var(--navy); padding: 36px 48px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      position: relative; overflow: hidden;
+    }
+    .featured-card__header::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .featured-card__header::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--amber);
+    }
+    .featured-card__header-left { position: relative; }
+    .featured-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border: 1px solid var(--amber);
+      border-radius: 2px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 16px;
+    }
+    .featured-card__header h2 {
+      font-size: 32px; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .featured-card__header-sub { font-size: 15px; color: rgba(255,255,255,0.5); }
+    .featured-card__header-icon {
+      width: 56px; height: 56px; color: rgba(255,255,255,0.15);
+      position: relative;
+    }
+
+    .featured-card__body { padding: 40px 48px; }
+    .featured-body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+    .featured-desc p { font-size: 16px; color: var(--text2); line-height: 1.8; margin-bottom: 20px; }
+    .featured-products { margin-top: 4px; }
+    .featured-products__label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+    .featured-product-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .fptag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; background: var(--slate50); border: 1px solid var(--border);
+      border-radius: 2px; font-size: 12px; font-weight: 600;
+      color: var(--text); font-family: var(--mono);
+    }
+    .fptag.highlight { border-color: var(--amber); color: #92400E; background: var(--amber-bg); }
+
+    .featured-apps { }
+    .featured-apps__label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+    .featured-app-item {
+      display: flex; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .featured-app-item:last-of-type { border-bottom: none; margin-bottom: 24px; }
+    .featured-app-num {
+      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      color: var(--amber); width: 20px; flex-shrink: 0; padding-top: 2px;
+    }
+    .featured-app-item h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .featured-app-item p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band { background: var(--navy); padding: 80px 0; position: relative; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; }
+    .cta-band__inner { position: relative; text-align: center; }
+    .cta-band h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+    .cta-band p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 32px; }
+    .cta-band__buttons { display: flex; gap: 12px; justify-content: center; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--navy); border-top: 1px solid var(--navy-d); padding: 64px 0 48px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.4); margin-top: 12px; max-width: 260px; }
+    .footer-brand__logo { font-size: 18px; font-weight: 700; color: #fff; display: flex; flex-direction: column; line-height: 1.15; }
+    .footer-brand__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .footer-col h5 { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--navy-d); }
+    .footer-bottom p, .footer-bottom a { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-legal { display: flex; gap: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
+        <div>
+          АО «Победит»
+          <span>Твёрдые сплавы · Инструмент · Изделия</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navMenu">
+        <li class="nav__item">
+          <a href="/products.html">Продукция</a></li>
+        <li><a href="/industries.html" class="active">Отрасли</a></li>
+        <li><a href="/about.html">О заводе</a></li>
+        <li><a href="document.html">Документация</a></li>
+        <li><a href="/contacts.html">Контакты</a></li>
+      
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/rfq.html" class="btn btn-primary">Запросить КП</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/index.html">Главная</a><span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">Отрасли применения</span>
+    </div>
+    <div class="page-header__inner">
+      <div>
+        <h1>Отрасли применения</h1>
+        <p class="page-header__desc">Изделия из твёрдых сплавов, тугоплавких металлов и тяжёлых сплавов АО «Победит» применяются в 8 ключевых отраслях российской промышленности — от нефтегаза и металлургии до ВПК и авиации.</p>
+      </div>
+      <div class="page-header__stat">
+        <div class="page-header__stat-val">8</div>
+        <div class="page-header__stat-lbl">ключевых отраслей<br>применения</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INDUSTRY GRID ═══ -->
+<section class="industries-section">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;">
+      <div>
+        <div class="section-label">Отрасли</div>
+        <h2 class="section-title">Где применяется продукция</h2>
+      </div>
+      <a href="/products.html" class="link-arrow">Весь каталог →</a>
+    </div>
+    <div class="industries-grid">
+
+      <!-- 1. Нефтегаз -->
+      <a href="/industries/oil-gas" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">01</span>
+        </div>
+        <h3>Нефтегаз</h3>
+        <p>Твёрдые сплавы ВК8, ВК10, ВК15 для буровых долот, коронок и шарошек. Тяжёлые сплавы ВНЖ для инерционных грузов и балансировки глубинного оборудования. Сплавы устойчивы к абразивному износу и ударным нагрузкам при бурении.</p>
+        <div class="product-tags">
+          <span class="ptag">ТС гр. ВК</span>
+          <span class="ptag">ВК8</span>
+          <span class="ptag">ВК10</span>
+          <span class="ptag">ВНЖ-90</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 2. Металлургия -->
+      <a href="/industries/metallurgy" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">02</span>
+        </div>
+        <h3>Металлургия</h3>
+        <p>Тугоплавкие металлы: вольфрамовые и молибденовые тигли, лодочки и экраны для вакуумных печей с температурой до 2 000 °C. Нагревательные элементы из молибдена для камерных и трубчатых печей отжига и спекания.</p>
+        <div class="product-tags">
+          <span class="ptag">Вольфрам W</span>
+          <span class="ptag">Молибден Mo</span>
+          <span class="ptag">Тигли</span>
+          <span class="ptag">Нагреватели</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 3. Машиностроение -->
+      <a href="/industries/engineering" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">03</span>
+        </div>
+        <h3>Машиностроение</h3>
+        <p>Твёрдые сплавы ТК и ТТК групп для режущего инструмента при обработке конструкционных и легированных сталей. Пресс-формы и штампы из ВК6–ВК15 для холодной и горячей штамповки с высоким ресурсом стойкости.</p>
+        <div class="product-tags">
+          <span class="ptag">Т15К6</span>
+          <span class="ptag">Т5К10</span>
+          <span class="ptag">ТТ7К12</span>
+          <span class="ptag">ВК6</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 4. ВПК -->
+      <a href="/industries/defense" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">04</span>
+        </div>
+        <h3>ВПК / Оборонная</h3>
+        <p>Тяжёлые сплавы ВНЖ-90–95 и ВНМ-95 плотностью 17–18,5 г/см³ применяются в сердечниках кинетических боеприпасов, балансировочных системах ракет и авиатехники, защитных экранах от осколков. Изготовление по чертежам заказчика.</p>
+        <div class="product-tags">
+          <span class="ptag">ВНЖ-90</span>
+          <span class="ptag">ВНЖ-95</span>
+          <span class="ptag">ВНМ-95</span>
+          <span class="ptag">По ТЗ</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 5. Авиация -->
+      <a href="/industries/aviation" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">05</span>
+        </div>
+        <h3>Авиация</h3>
+        <p>Балансировочные грузы из тяжёлых вольфрамовых сплавов для авиационных конструкций. Молибденовые детали для высокотемпературных узлов авиадвигателей. Прецизионные изделия по чертежам ОКБ и производственным стандартам авиаотрасли.</p>
+        <div class="product-tags">
+          <span class="ptag">ВНЖ-95</span>
+          <span class="ptag">Молибден Mo</span>
+          <span class="ptag">Балансиры</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 6. Энергетика -->
+      <a href="/industries/energy" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">06</span>
+        </div>
+        <h3>Энергетика</h3>
+        <p>Радиационная защита из тяжёлых сплавов ВНЖ/ВНМ в оборудовании АЭС, медицинских линейных ускорителях и гамма-дефектоскопах. Молибденовые детали для высокотемпературных электронагревателей тепловых установок.</p>
+        <div class="product-tags">
+          <span class="ptag">ВНЖ-90</span>
+          <span class="ptag">ВГ-15</span>
+          <span class="ptag">Молибден Mo</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 7. Горнодобывающая -->
+      <a href="/industries/mining" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">07</span>
+        </div>
+        <h3>Горнодобывающая</h3>
+        <p>Твёрдосплавные штыри и вставки из ВК8, ВК10, ВК15 для буровых коронок и долот при разработке твёрдых горных пород. Износостойкие элементы дробильного, размольного и транспортного оборудования шахт и карьеров.</p>
+        <div class="product-tags">
+          <span class="ptag">ВК8</span>
+          <span class="ptag">ВК10</span>
+          <span class="ptag">ВК15</span>
+          <span class="ptag">Штыри</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+      <!-- 8. Инструментальное -->
+      <a href="/industries/tooling" class="industry-card">
+        <div class="industry-card__top">
+          <span class="industry-card__num">08</span>
+        </div>
+        <h3>Инструментальное производство</h3>
+        <p>Сменные многогранные пластины и монолитный инструмент из всех групп твёрдых сплавов. Специальный инструмент по чертежам для резьбонарезания, растачивания, протягивания. Широкая линейка марок под ISO-классификацию применений.</p>
+        <div class="product-tags">
+          <span class="ptag">ВК6</span>
+          <span class="ptag">Т15К6</span>
+          <span class="ptag">Пластины</span>
+          <span class="ptag">ISO P/K/N</span>
+        </div>
+        <span class="link-arrow" style="font-size:13px;margin-top:4px;">Подробнее →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MATRIX TABLE ═══ -->
+<section class="matrix-section">
+  <div class="container">
+    <div class="matrix-layout">
+      <div class="matrix-intro">
+        <div class="section-label">Применимость</div>
+        <h2 class="section-title">Продукт — отрасль</h2>
+        <p>Справочная матрица применимости продуктовых направлений АО «Победит» по отраслям. Позволяет быстро определить, какие категории продукции релевантны для конкретной отрасли, прежде чем перейти в каталог.</p>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);">
+            <span style="color:var(--amber);font-size:16px;">●</span> Основное применение
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);">
+            <span style="color:var(--border2);font-size:16px;">–</span> Не применяется
+          </div>
+        </div>
+        <div style="margin-top:28px;">
+          <a href="/products.html" class="link-arrow">Перейти к каталогу →</a>
+        </div>
+      </div>
+
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Отрасль</th>
+            <th class="center">Твёрдые<br>сплавы</th>
+            <th class="center">Тугоплавкие<br>металлы</th>
+            <th class="center">Тяжёлые<br>сплавы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="matrix-industry">Нефтегаз</div></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Металлургия</div></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Машиностроение</div></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">ВПК / Оборонная</div></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Авиация</div></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Энергетика</div></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Горнодобывающая</div></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+          </tr>
+          <tr>
+            <td><div class="matrix-industry">Инструментальное</div></td>
+            <td class="center"><span class="matrix-dot">●</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+            <td class="center"><span class="matrix-dash">–</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED: НЕФТЕГАЗ ═══ -->
+<section class="featured-section">
+  <div class="container">
+    <div style="margin-bottom:28px;">
+      <div class="section-label">Ключевая отрасль</div>
+      <h2 class="section-title">Детальный разбор применения</h2>
+    </div>
+    <div class="featured-card">
+      <div class="featured-card__header">
+        <div class="featured-card__header-left">
+          <div class="featured-label">Ключевая отрасль</div>
+          <h2>Нефтегазовая промышленность</h2>
+          <div class="featured-card__header-sub">Буровой инструмент · Арматура · Инерционные системы</div>
+        </div>
+        </div>
+
+      <div class="featured-card__body">
+        <div class="featured-body-grid">
+          <div class="featured-desc">
+            <p>Нефтегазовая отрасль предъявляет одни из наиболее жёстких требований к буровому инструменту: высокие контактные напряжения, ударные нагрузки при бурении твёрдых горных пород, абразивная шламовая среда. Твёрдые сплавы группы ВК с содержанием кобальта 8–15% обеспечивают оптимальное сочетание твёрдости и ударной вязкости для вооружения буровых долот и коронок.</p>
+            <p>Тяжёлые вольфрамовые сплавы ВНЖ применяются как балансировочные грузы в компоновках низа бурильной колонны (КНБК) и как инерционные элементы направленного бурения.</p>
+            <div class="featured-products" style="margin-top:8px;">
+              <div class="featured-products__label">Применяемые марки</div>
+              <div class="featured-product-tags">
+                <span class="fptag highlight">ВК8</span>
+                <span class="fptag highlight">ВК10</span>
+                <span class="fptag highlight">ВК15</span>
+                <span class="fptag">ВНЖ-90</span>
+                <span class="fptag">ВНЖ-93</span>
+                <span class="fptag">По ТЗ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="featured-apps">
+            <div class="featured-apps__label">Примеры применения</div>
+            <div class="featured-app-item">
+              <div class="featured-app-num">01</div>
+              <div>
+                <h4>Вооружение буровых долот и коронок</h4>
+                <p>Твёрдосплавные штыри и вставки из ВК8–ВК15 запрессовываются в корпус долота и работают как режущие и скалывающие элементы при бурении. Твёрдость 86–88 HRA обеспечивает стойкость к истиранию, а высокая прочность на изгиб — к ударным нагрузкам при набросе породы.</p>
+              </div>
+            </div>
+            <div class="featured-app-item">
+              <div class="featured-app-num">02</div>
+              <div>
+                <h4>Балансировочные грузы КНБК</h4>
+                <p>Тяжёлые сплавы ВНЖ-90/93 плотностью 17,0–17,6 г/см³ используются как утяжелённые вставки в телеметрические зонды и маятниковые центраторы компоновки низа бурильной колонны. Высокая плотность при компактных габаритах — ключевое преимущество перед свинцом и сталью.</p>
+              </div>
+            </div>
+            <a href="/rfq?industry=oil-gas" class="btn btn-primary btn-lg">Запросить КП для нефтегаза</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__inner">
+      <h2>Не нашли свою отрасль?</h2>
+      <p>Опишите задачу — технические специалисты подберут подходящий материал и форму поставки.</p>
+      <div class="cta-band__buttons">
+        <a href="/rfq.html" class="btn btn-primary btn-lg">Запросить КП</a>
+        <a href="/contacts.html" class="btn btn-ghost btn-lg">Написать нам</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">АО «Победит»<span>с 1948 года</span></div>
+        <p>Производитель изделий из вольфрама, молибдена, твёрдых и тяжёлых сплавов. г. Владикавказ, Республика Северная Осетия — Алания.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Продукция</h5>
+        <ul>
+          <li><a href="catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тугоплавкие металлы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тяжёлые сплавы</a></li>
+          <li><a href="/products.html">Весь каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="/about.html">О заводе</a></li>
+          <li><a href="/production">Производство</a></li>
+          <li><a href="/quality.html">Контроль качества</a></li>
+          <li><a href="/news.html">Новости</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Документация</h5>
+        <ul>
+          <li><a href="document.html">Все документы</a></li>
+          <li><a href="quality.html#gost">ГОСТ</a></li>
+          <li><a href="quality.html#tu">Технические условия</a></li>
+          <li><a href="quality.html#certs">Сертификаты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="/contacts.html">Контакты</a></li>
+          <li><a href="/rfq.html">Запрос КП</a></li>
+          <li><a href="/partners">Партнёрам</a></li>
+          <li><a href="/industries.html">Отрасли</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 АО «Победит». Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="contacts.html">Правовая информация</a>
+        <a href="/legal/privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

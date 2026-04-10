@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Качество и сертификаты — АО «Победит»</title>
+  <link rel="icon" type="image/svg+xml" href="ao-pobedit-ord--600.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --offwhite: #F5F5F3;
+      --slate50:  #F0F2F5;
+      --text:     #111827;
+      --text2:    #6B7280;
+      --text3:    #9CA3AF;
+      --amber:    #D97706;
+      --amber-bg: #FFFBEB;
+      --amber-lt: #FEF3C7;
+      --green:    #16A34A;
+      --green-bg: #F0FDF4;
+      --green-lt: #DCFCE7;
+      --border:   #E5E7EB;
+      --border2:  #D1D5DB;
+      --cont:     1280px;
+      --mono:     'JetBrains Mono', 'Courier New', monospace;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--cont); margin: 0 auto; padding: 0 40px; }
+
+    /* ─── NAV ─── */
+    .nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); height: 68px; display: flex; align-items: center; }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav__logo { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); display: flex; flex-direction: column; line-height: 1.15; }
+    .nav__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); }
+    .nav__links { display: flex; gap: 32px; list-style: none; }
+    .nav__links a { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); transition: color 0.15s; }
+    .nav__links a:hover { color: var(--text); }
+    .btn-amber { display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 600; border-radius: 3px; background: var(--amber); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
+    .btn-amber:hover { background: #B45309; }
+    .btn-outline { display: inline-block; padding: 9px 20px; font-size: 14px; font-weight: 600; border-radius: 3px; background: transparent; color: var(--text); border: 1.5px solid var(--text); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header { background: var(--offwhite); padding: 40px 0 44px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); margin-bottom: 18px; }
+    .breadcrumb a { color: var(--text2); transition: color 0.15s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb__sep { color: var(--text3); }
+    .breadcrumb__current { color: var(--text); font-weight: 500; }
+    .page-header h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+    .page-header__desc { font-size: 16px; color: var(--text2); max-width: 600px; line-height: 1.65; }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 64px 0; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+    .section-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 32px; letter-spacing: -0.01em; }
+    .section-divider { height: 1px; background: var(--border); }
+
+    /* ─── CERT GRID ─── */
+    .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+    .cert-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 32px; display: flex; flex-direction: column; gap: 0; }
+    .cert-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+    .cert-card__badge-wrap { }
+    .cert-card__num { font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 4px; }
+    .cert-card__name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 3px; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; flex-shrink: 0; }
+    .status-badge--green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-lt); }
+    .status-badge--amber { background: var(--amber-bg); color: #92400E; border: 1px solid var(--amber-lt); }
+    .status-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .cert-card__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+    .cert-meta-item__label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 3px; }
+    .cert-meta-item__value { font-size: 13px; color: var(--text); line-height: 1.45; }
+    .cert-meta-item__value.mono { font-family: var(--mono); font-size: 12px; }
+    .cert-card__footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cert-card__scope { font-size: 13px; color: var(--text2); flex: 1; line-height: 1.5; }
+    .btn-pdf { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; font-size: 13px; font-weight: 600; border-radius: 3px; border: 1.5px solid var(--border2); color: var(--text); background: transparent; cursor: pointer; white-space: nowrap; transition: border-color 0.15s, color 0.15s; }
+    .btn-pdf:hover { border-color: var(--amber); color: var(--amber); }
+    .btn-pdf svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ─── PROCESS STEPS ─── */
+    .steps-list { display: flex; flex-direction: column; gap: 0; }
+    .step { display: grid; grid-template-columns: 52px 1fr; gap: 0; align-items: stretch; }
+    .step__left { display: flex; flex-direction: column; align-items: center; }
+    .step__num { width: 36px; height: 36px; border-radius: 50%; background: var(--text); color: #fff; font-family: var(--mono); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step__line { flex: 1; width: 1px; background: var(--border); margin: 6px 0; }
+    .step:last-child .step__line { display: none; }
+    .step__body { padding: 0 0 32px 20px; }
+    .step:last-child .step__body { padding-bottom: 0; }
+    .step__title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; padding-top: 6px; }
+    .step__desc { font-size: 14px; color: var(--text2); line-height: 1.6; max-width: 560px; }
+
+    /* ─── LAB BLOCK ─── */
+    .lab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .lab-text h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 14px; letter-spacing: -0.01em; }
+    .lab-text p { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 20px; }
+    .lab-capabilities { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .lab-capabilities li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text); }
+    .lab-capabilities li::before { content: '—'; color: var(--amber); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .lab-capabilities li span { color: var(--text2); font-size: 13px; margin-left: 4px; }
+
+    .lab-equip { background: #fff; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .lab-equip__head { padding: 14px 20px; background: var(--slate50); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .lab-equip__head-cell { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); }
+    .lab-equip__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--border); align-items: center; }
+    .lab-equip__row:last-child { border-bottom: none; }
+    .lab-equip__name { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--text); }
+    .lab-equip__model { font-size: 13px; color: var(--text2); }
+
+    /* ─── CTA BLOCK ─── */
+    .cta-block { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-bottom: 64px; }
+    .cta-block__text h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .cta-block__text p { font-size: 14px; color: var(--text2); line-height: 1.6; max-width: 480px; }
+    .cta-block__actions { display: flex; gap: 12px; flex-shrink: 0; }
+
+    /* ─── FOOTER ─── */
+    .footer { background: #0B1728; color: #9CA3AF; padding: 56px 0 36px; }
+    .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer__logo { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer__logo-sub { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6B7280; margin-bottom: 16px; }
+    .footer__brand p { font-size: 13px; line-height: 1.7; color: #6B7280; max-width: 260px; }
+    .footer__col h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 16px; }
+    .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer__col ul a { font-size: 14px; color: #9CA3AF; transition: color 0.15s; }
+    .footer__col ul a:hover { color: #fff; }
+    .footer__bottom { border-top: 1px solid #1E2D42; padding-top: 28px; display: flex; align-items: center; justify-content: space-between; }
+    .footer__copy { font-size: 13px; color: #4B5563; }
+    .footer__cert { font-size: 12px; color: #4B5563; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
+        <div>
+          АО «Победит»
+          <span>Твёрдые сплавы · Инструмент · Изделия</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navMenu">
+        <li class="nav__item">
+          <a href="/products.html">Продукция</a></li>
+        <li><a href="/industries.html">Отрасли</a></li>
+        <li><a href="/about.html">О компании</a></li>
+        <li><a href="/contacts.html">Контакты</a></li>
+      
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/rfq.html" class="btn-amber">Запросить КП</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/index.html">Главная</a>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">Качество и сертификаты</span>
+    </div>
+    <h1>Качество и сертификаты</h1>
+    <p class="page-header__desc">Для производителя твёрдых сплавов качество — это прежде всего контролируемый химический состав, стабильная твёрдость и воспроизводимая геометрия партии за партией. Все наши изделия проходят входной и выходной контроль с документальным подтверждением.</p>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Документальное подтверждение</div>
+    <div class="section-title">Действующие сертификаты</div>
+
+    <div class="cert-grid">
+
+      <!-- ISO 9001:2015 -->
+      <div class="cert-card">
+        <div class="cert-card__top">
+          <div class="cert-card__badge-wrap">
+            <div class="cert-card__num">ISO 9001:2015</div>
+            <div class="cert-card__name">Система менеджмента качества</div>
+          </div>
+          <span class="status-badge status-badge--green">Действует</span>
+        </div>
+        <div class="cert-card__meta">
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Номер сертификата</div>
+            <div class="cert-meta-item__value mono">см. документацию</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Дата проверки</div>
+            <div class="cert-meta-item__value">2024–2025 (надзорный аудит — без замечаний)</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Орган по сертификации</div>
+            <div class="cert-meta-item__value">Аккредитованный орган Росаккредитации</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Область применения</div>
+            <div class="cert-meta-item__value">Производство вольфрама, молибдена, твёрдых и тяжёлых сплавов</div>
+          </div>
+        </div>
+        <div class="cert-card__footer">
+          <div class="cert-card__scope">Охватывает весь производственный цикл — от входного контроля сырья до финальной приёмки и выпуска продукции.</div>
+          <a href="/document.html" class="btn-pdf">
+            На документацию
+          </a>
+        </div>
+      </div>
+
+      <!-- ГОСТ Р ИСО 9001-2015 -->
+      <div class="cert-card">
+        <div class="cert-card__top">
+          <div class="cert-card__badge-wrap">
+            <div class="cert-card__num">ГОСТ Р ИСО 9001-2015</div>
+            <div class="cert-card__name">Национальный стандарт качества</div>
+          </div>
+          <span class="status-badge status-badge--green">Действует</span>
+        </div>
+        <div class="cert-card__meta">
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Номер сертификата</div>
+            <div class="cert-meta-item__value mono">РОСС RU.ИМ04.К00127</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Дата проверки</div>
+            <div class="cert-meta-item__value">2025 — надзорный аудит</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Орган по сертификации</div>
+            <div class="cert-meta-item__value">Аккредитованный орган Федеральной службы</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Область применения</div>
+            <div class="cert-meta-item__value">Производство тугоплавких и твёрдых сплавов (госзакупки)</div>
+          </div>
+        </div>
+        <div class="cert-card__footer">
+          <div class="cert-card__scope">Российский эквивалент ISO 9001:2015 — требуется для государственных и оборонных тендеров.</div>
+          <a href="/document.html" class="btn-pdf">
+            На документацию
+          </a>
+        </div>
+      </div>
+
+      <!-- ТУ / ГОСТ на твёрдые сплавы -->
+      <div class="cert-card">
+        <div class="cert-card__top">
+          <div class="cert-card__badge-wrap">
+            <div class="cert-card__num">ГОСТ 3882-74 · ТУ 48-19-226</div>
+            <div class="cert-card__name">Сертификат соответствия ТВ сплавы</div>
+          </div>
+          <span class="status-badge status-badge--green">Действует</span>
+        </div>
+        <div class="cert-card__meta">
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Номер сертификата</div>
+            <div class="cert-meta-item__value mono">РОСС RU.АЯ46.В57218</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Дата выдачи</div>
+            <div class="cert-meta-item__value">Действует на текущий год</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Орган по сертификации</div>
+            <div class="cert-meta-item__value">ФБУ «Государственный центр стандартизации»</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Область применения</div>
+            <div class="cert-meta-item__value">Пластины ВК6, ВК8, Т15К6, ТТ7К12 — полные марки</div>
+          </div>
+        </div>
+        <div class="cert-card__footer">
+          <div class="cert-card__scope">Подтверждает соответствие химсостава, твёрдости, плотности и механических свойств требованиям ГОСТ.</div>
+          <a href="/document.html" class="btn-pdf">
+            На документацию
+          </a>
+        </div>
+      </div>
+
+      <!-- Ростехнадзор -->
+      <div class="cert-card">
+        <div class="cert-card__top">
+          <div class="cert-card__badge-wrap">
+            <div class="cert-card__num">РТН-ГО-01-16482</div>
+            <div class="cert-card__name">Разрешение Ростехнадзора</div>
+          </div>
+          <span class="status-badge status-badge--amber">Подлежит переоформлению</span>
+        </div>
+        <div class="cert-card__meta">
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Номер разрешения</div>
+            <div class="cert-meta-item__value mono">РТН-ГО-01-16482/2021</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Статус</div>
+            <div class="cert-meta-item__value">Действующее разрешение на ОПО</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Органтроль</div>
+            <div class="cert-meta-item__value">Федеральная служба по технадзору России</div>
+          </div>
+          <div class="cert-meta-item">
+            <div class="cert-meta-item__label">Область применения</div>
+            <div class="cert-meta-item__value">Буровой и горнодобывающий инструмент на опасных объектах</div>
+          </div>
+        </div>
+        <div class="cert-card__footer">
+          <div class="cert-card__scope">Допуск к применению на опасных производственных объектах в горнодобывающей и энергетической отрасли.</div>
+          <a href="/contacts.html" class="btn-pdf">
+            Запросить реквизиты
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROCESS STEPS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Производственный контроль</div>
+    <div class="section-title">Контроль качества на производстве</div>
+
+    <div style="max-width: 720px;">
+      <div class="steps-list">
+
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">01</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__body">
+            <div class="step__title">Входной контроль сырья</div>
+            <div class="step__desc">Каждая партия карбида вольфрама, кобальта и легирующих добавок проверяется на соответствие химическому составу методом XRF-спектрометрии. Несоответствующее сырьё не допускается в производство.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">02</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__body">
+            <div class="step__title">Контроль на этапе спекания</div>
+            <div class="step__desc">Температурный профиль вакуумных печей записывается в реальном времени. После спекания — выборочный контроль твёрдости (HRA) и плотности методом гидростатического взвешивания.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">03</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__body">
+            <div class="step__title">Метрологический контроль</div>
+            <div class="step__desc">Размерный контроль изделий производится на КИМ (координатно-измерительная машина) и профилометрах. Допуски на геометрию соответствуют ГОСТ и международным стандартам ISO.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">04</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__body">
+            <div class="step__title">Финальная приёмка</div>
+            <div class="step__desc">100% визуальный контроль + выборочные испытания на прочность при поперечном изгибе (TRS). Партия сопровождается протоколом испытаний с фактическими значениями показателей.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">05</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__body">
+            <div class="step__title">Паспорт на изделие</div>
+            <div class="step__desc">Каждая партия комплектуется паспортом качества с указанием марки, плавки, фактических механических и физических свойств, даты выпуска и подписью ОТК. По запросу — расширенный сертификат 3.1 по EN 10204.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- LAB BLOCK -->
+<section class="section">
+  <div class="container">
+    <div class="lab-grid">
+
+      <div class="lab-text">
+        <div class="section-label">Испытательная база</div>
+        <h2>Собственная испытательная лаборатория</h2>
+        <p>Аккредитованная лаборатория завода проводит полный цикл испытаний без привлечения сторонних организаций. Это сокращает сроки выдачи документов и исключает зависимость от внешних подрядчиков при срочных отгрузках.</p>
+        <ul class="lab-capabilities">
+          <li>Твёрдость по Роквеллу (HRA, HRC) <span>± 0,2 HRA</span></li>
+          <li>Плотность — гидростатическое взвешивание <span>± 0,01 г/см³</span></li>
+          <li>Размер зерна WC — металлографический анализ <span>× 1000–4000</span></li>
+          <li>Прочность при поперечном изгибе (TRS) <span>по ISO 3327</span></li>
+          <li>Химический состав — XRF-спектрометрия <span>W, Co, Ti, Ta, Nb</span></li>
+          <li>Пористость — классификация по ISO 4505</li>
+        </ul>
+      </div>
+
+      <div class="lab-equip">
+        <div class="lab-equip__head">
+          <div class="lab-equip__head-cell">Оборудование</div>
+          <div class="lab-equip__head-cell">Модель / параметры</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">Твердомер</div>
+          <div class="lab-equip__model">Wilson Hardness UH930, диапазон 20–94 HRA</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">XRF-спектрометр</div>
+          <div class="lab-equip__model">Bruker S8 TIGER, 10 элементов одновременно</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">КИМ</div>
+          <div class="lab-equip__model">Zeiss CONTURA G2, точность 0,6 мкм</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">Металлографический микроскоп</div>
+          <div class="lab-equip__model">Leica DM6 M, ×50–4000, цифровой анализ</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">Испытательная машина TRS</div>
+          <div class="lab-equip__model">Zwick/Roell Z050, нагрузка до 50 кН</div>
+        </div>
+        <div class="lab-equip__row">
+          <div class="lab-equip__name">Весы гидростатические</div>
+          <div class="lab-equip__model">Mettler Toledo XPE504S, ±0,1 мг</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<div class="container">
+  <div style="padding: 48px 0 80px;">
+    <div class="cta-block">
+      <div class="cta-block__text">
+        <h3>Нужна конкретная документация?</h3>
+        <p>Сертификаты и паспорта качества предоставляются по запросу — укажите марку и партию. Расширенный сертификат 3.1 по EN 10204 — по согласованию при оформлении заказа.</p>
+      </div>
+      <div class="cta-block__actions">
+        <a href="/rfq.html" class="btn-amber">Запросить документы</a>
+        <a href="/contacts.html" class="btn-outline">Отдел документации</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">АО «Победит»</div>
+        <div class="footer__logo-sub">Основан в 1948 году</div>
+        <p>Крупнейший производитель вольфрама, молибдена, твёрдых сплавов и тяжёлых сплавов в России. 76+ лет на рынке.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Продукция</h4>
+        <ul>
+          <li><a href="/catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+          <li><a href="/product.html">Режущий инструмент</a></li>
+          <li><a href="/product.html">Спецзаказ</a></li>
+          <li><a href="/product.html">Стандартные изделия</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="/about.html">О компании</a></li>
+          <li><a href="/industries.html">Отрасли</a></li>
+          <li><a href="/quality.html">Качество и сертификаты</a></li>
+          <li><a href="/contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+78672768249">8 (8672) 76-82-49</a></li>
+          <li><a href="tel:+78672598500">8 (8672) 59-85-00</a></li>
+          <li><a href="mailto:pobedit@osetia.ru">pobedit@osetia.ru</a></li>
+          <li><a href="/rfq.html">Запросить КП</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__copy">© 2024 АО «Победит». Все права защищены.</div>
+      <div class="footer__cert">ISO 9001:2015 · ГОСТ Р ИСО 9001</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О заводе — АО «Победит»</title>
+  <link rel="icon" type="image/svg+xml" href="ao-pobedit-ord--600.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:    #0B1728;
+      --navy-d:  #1E2D42;
+      --navy-m:  #162236;
+      --offwhite:#F5F5F3;
+      --slate50: #F0F2F5;
+      --text:    #111827;
+      --text2:   #6B7280;
+      --text3:   #9CA3AF;
+      --amber:   #D97706;
+      --amber-bg:#FFFBEB;
+      --green:   #16A34A;
+      --border:  #E5E7EB;
+      --cont:    1280px;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--cont); margin: 0 auto; padding: 0 40px; }
+
+    /* ─── NAV ─── */
+    .nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); height: 68px; display: flex; align-items: center; }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav__logo { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); display: flex; flex-direction: column; line-height: 1.15; }
+    .nav__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); }
+    .nav__links { display: flex; gap: 32px; list-style: none; }
+    .nav__links a { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); transition: color 0.15s; }
+    .nav__links a:hover { color: var(--text); }
+    .nav__links a.active { color: var(--text); border-bottom: 2px solid var(--amber); padding-bottom: 2px; }
+    .btn { display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 600; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+    .btn-primary { background: var(--amber); color: #fff; border: 1.5px solid var(--amber); }
+    .btn-primary:hover { background: #B45309; border-color: #B45309; }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--text); }
+    .btn-secondary:hover { background: var(--text); color: #fff; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-lg { padding: 14px 32px; font-size: 15px; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header { background: var(--offwhite); padding: 44px 0 48px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--text2); transition: color 0.15s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb__sep { color: var(--text3); }
+    .breadcrumb__current { color: var(--text); font-weight: 500; }
+    .page-header h1 { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+    .page-header__desc { font-size: 17px; color: var(--text2); max-width: 640px; line-height: 1.7; }
+
+    /* ─── KEY FACTS STRIP ─── */
+    .facts-strip { background: var(--navy); position: relative; overflow: hidden; }
+    .facts-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .facts-strip__inner { position: relative; display: flex; align-items: stretch; }
+    .fact-item {
+      flex: 1; padding: 48px 32px;
+      border-right: 1px solid var(--navy-d);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .fact-item:last-child { border-right: none; }
+    .fact-item__val {
+      font-family: var(--mono); font-size: 42px; font-weight: 700;
+      color: var(--amber); line-height: 1; letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .fact-item__label {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.02em; line-height: 1.4;
+    }
+    .fact-item__sub {
+      font-size: 11px; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+    .section-title { font-size: 34px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+    .section-title--white { color: #fff; }
+    .link-arrow { font-size: 14px; font-weight: 600; color: var(--amber); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.15s; }
+    .link-arrow:hover { gap: 10px; }
+
+    /* ─── HISTORY ─── */
+    .history-section { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .history-layout { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: start; }
+    .history-text p { font-size: 17px; line-height: 1.8; color: var(--text2); margin-bottom: 20px; }
+    .history-text p:last-child { margin-bottom: 0; }
+    .history-text p strong { color: var(--text); font-weight: 600; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 0; }
+    .timeline__line {
+      position: absolute; left: 20px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item { display: flex; gap: 24px; margin-bottom: 32px; position: relative; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item__dot {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: #fff; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .timeline-item__dot.accent { border-color: var(--amber); background: var(--amber-bg); }
+    .timeline-item__dot-year {
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      color: var(--text2); letter-spacing: -0.02em;
+    }
+    .timeline-item__dot.accent .timeline-item__dot-year { color: var(--amber); }
+    .timeline-item__body { padding-top: 8px; }
+    .timeline-item__year {
+      font-family: var(--mono); font-size: 13px; font-weight: 700;
+      color: var(--amber); margin-bottom: 4px;
+    }
+    .timeline-item__title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+    .timeline-item__text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* ─── PRODUCTION CAPABILITIES ─── */
+    .production-section { background: var(--slate50); }
+    .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .prod-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 4px;
+      padding: 32px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .prod-card__icon { width: 36px; height: 36px; color: var(--amber); }
+    .prod-card h3 { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .prod-card p { font-size: 15px; color: var(--text2); line-height: 1.7; flex: 1; }
+    .prod-card__specs { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); padding-top: 16px; }
+    .prod-spec { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .prod-spec:last-child { border-bottom: none; }
+    .prod-spec__k { color: var(--text2); }
+    .prod-spec__v { font-weight: 600; color: var(--text); font-family: var(--mono); font-size: 12px; }
+
+    /* ─── LOCATION ─── */
+    .location-section { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .location-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .location-text p { font-size: 17px; line-height: 1.8; color: var(--text2); margin-bottom: 20px; }
+    .location-text p strong { color: var(--text); font-weight: 600; }
+
+    .contact-block {
+      background: var(--offwhite); border: 1px solid var(--border); border-radius: 4px; padding: 32px;
+    }
+    .contact-block__label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
+    .contact-row { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .contact-row:last-of-type { border-bottom: none; }
+    .contact-row__key { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); }
+    .contact-row__val { font-size: 15px; font-weight: 500; color: var(--text); }
+    .contact-row__val a { color: var(--text); transition: color 0.15s; }
+    .contact-row__val a:hover { color: var(--amber); }
+
+    /* ─── CERTIFICATIONS ─── */
+    .certs-section { background: var(--slate50); }
+    .certs-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .certs-text p { font-size: 17px; color: var(--text2); line-height: 1.8; }
+
+    .cert-badges { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cert-badge {
+      background: #fff; border: 1px solid var(--border); border-radius: 3px;
+      padding: 18px 20px; display: flex; flex-direction: column; gap: 6px;
+    }
+    .cert-badge__code { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .cert-badge__name { font-size: 12px; color: var(--text2); line-height: 1.4; }
+    .cert-badge__status { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--green); margin-top: 2px; }
+    .cert-badge__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    /* ─── PARTNERS BLOCK ─── */
+    .partners-section { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .partners-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .partners-text p { font-size: 17px; color: var(--text2); line-height: 1.8; margin-bottom: 20px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
+    .contact-card {
+      background: var(--offwhite); border: 1px solid var(--border); border-radius: 3px;
+      padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .contact-card__info h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .contact-card__info p { font-size: 13px; color: var(--text2); }
+
+    /* ─── CTA BAND ─── */
+    .cta-band { background: var(--navy); padding: 80px 0; position: relative; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; }
+    .cta-band__inner { position: relative; text-align: center; }
+    .cta-band h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+    .cta-band p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 32px; }
+    .cta-band__buttons { display: flex; gap: 12px; justify-content: center; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--navy); border-top: 1px solid var(--navy-d); padding: 64px 0 48px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.4); margin-top: 12px; max-width: 260px; }
+    .footer-brand__logo { font-size: 18px; font-weight: 700; color: #fff; display: flex; flex-direction: column; line-height: 1.15; }
+    .footer-brand__logo span { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .footer-col h5 { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--navy-d); }
+    .footer-bottom p, .footer-bottom a { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-legal { display: flex; gap: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
+        <div>
+          АО «Победит»
+          <span>Твёрдые сплавы · Инструмент · Изделия</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navMenu">
+        <li class="nav__item">
+          <a href="/products.html">Продукция</a></li>
+        <li><a href="/industries.html">Отрасли</a></li>
+        <li><a href="/about.html" class="active">О заводе</a></li>
+        <li><a href="document.html">Документация</a></li>
+        <li><a href="/contacts.html">Контакты</a></li>
+      
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/rfq.html" class="btn btn-primary">Запросить КП</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/index.html">Главная</a><span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">О заводе</span>
+    </div>
+    <h1>О заводе</h1>
+    <p class="page-header__desc">АО «Победит» — российский промышленный производитель изделий из вольфрама, молибдена, твёрдых и тяжёлых сплавов с полным производственным циклом, действующий с 1948 года в г. Владикавказ.</p>
+  </div>
+</div>
+
+<!-- ═══ KEY FACTS STRIP ═══ -->
+<div class="facts-strip">
+  <div class="container">
+    <div class="facts-strip__inner">
+      <div class="fact-item">
+        <div class="fact-item__val">1948</div>
+        <div class="fact-item__label">Год основания предприятия</div>
+        <div class="fact-item__sub">Владикавказ, РСФСР</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-item__val">70+</div>
+        <div class="fact-item__label">Лет непрерывного производства</div>
+        <div class="fact-item__sub">Без смены производственного профиля</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-item__val">3</div>
+        <div class="fact-item__label">Производственных направления</div>
+        <div class="fact-item__sub">ТС · ТМ · ТЖС</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-item__val">8+</div>
+        <div class="fact-item__label">Отраслей применения продукции</div>
+        <div class="fact-item__sub">Нефтегаз, ВПК, металлургия…</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-item__val">ГОСТ</div>
+        <div class="fact-item__label">Нормативная база производства</div>
+        <div class="fact-item__sub">ГОСТ / ТУ / СМК</div>
+      </div>
+      <div class="fact-item" style="border-right:none;">
+        <div class="fact-item__val">РСО-А</div>
+        <div class="fact-item__label">Место производства</div>
+        <div class="fact-item__sub">г. Владикавказ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HISTORY ═══ -->
+<section class="history-section">
+  <div class="container">
+    <div class="history-layout">
+      <div class="history-text">
+        <div class="section-label">История</div>
+        <h2 class="section-title">История предприятия</h2>
+        <p>АО «Победит» основано в <strong>1948 году</strong> во Владикавказе как специализированное производство тугоплавких металлов и твёрдых сплавов для нужд советской промышленности. Предприятие стало одним из немногих в стране, сосредоточенных на полном цикле переработки вольфрамового и молибденового сырья — от порошковой металлургии до готовых изделий по ГОСТ.</p>
+        <p>В <strong>1960–1980-е годы</strong> завод последовательно расширял номенклатуру: были освоены марки твёрдых сплавов групп ВК, ТК и ТТК, запущено производство тяжёлых вольфрамовых сплавов для ВПК и приборостроения. Продукция предприятия поставлялась на крупнейшие машиностроительные и добывающие предприятия Советского Союза.</p>
+        <p>После <strong>1991 года</strong> АО «Победит» сохранило производственный профиль и технологическую базу, адаптировав работу к рыночным условиям. В 2000-е годы был проведён комплекс технических обновлений оборудования и систем контроля качества. Сегодня предприятие работает как самостоятельный промышленный производитель, поставляя продукцию в нефтегазовую, металлургическую, авиационную и оборонную отрасли.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div>
+        <div class="section-label" style="margin-bottom:24px;">Ключевые этапы</div>
+        <div class="timeline">
+          <div class="timeline__line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot accent">
+              <span class="timeline-item__dot-year">1948</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">1948</div>
+              <div class="timeline-item__title">Основание предприятия</div>
+              <div class="timeline-item__text">Пуск производства тугоплавких металлов и твёрдых сплавов во Владикавказе.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot">
+              <span class="timeline-item__dot-year">60е</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">1960-е</div>
+              <div class="timeline-item__title">Расширение номенклатуры</div>
+              <div class="timeline-item__text">Освоение марок групп ТК и ТТК. Поставки для машиностроительных предприятий СССР.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot">
+              <span class="timeline-item__dot-year">80е</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">1980-е</div>
+              <div class="timeline-item__title">Тяжёлые сплавы и ВПК</div>
+              <div class="timeline-item__text">Запуск производства тяжёлых вольфрамовых сплавов ВНЖ/ВНМ. Поставки в оборонную и авиационную отрасль.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot">
+              <span class="timeline-item__dot-year">1991</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">1991</div>
+              <div class="timeline-item__title">Акционирование</div>
+              <div class="timeline-item__text">Преобразование в акционерное общество. Сохранение производственного профиля и коллектива специалистов.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot">
+              <span class="timeline-item__dot-year">2000</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">2000-е</div>
+              <div class="timeline-item__title">Технологическое обновление</div>
+              <div class="timeline-item__text">Модернизация производственного оборудования. Введение современной системы менеджмента качества.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item__dot accent">
+              <span class="timeline-item__dot-year" style="font-size:9px;">Сейчас</span>
+            </div>
+            <div class="timeline-item__body">
+              <div class="timeline-item__year">Сегодня</div>
+              <div class="timeline-item__title">Действующий производитель</div>
+              <div class="timeline-item__text">Полный цикл производства ТС, тугоплавких металлов и ТЖС. Поставки в 8+ отраслей по всей России.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTION CAPABILITIES ═══ -->
+<section class="production-section">
+  <div class="container">
+    <div class="section-label">Производство</div>
+    <h2 class="section-title">Производственные компетенции</h2>
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <h3>Полный производственный цикл</h3>
+        <p>Производство ведётся от стадии подготовки сырьевых порошков до готовых изделий и прецизионных деталей. Отсутствие посреднических звеньев обеспечивает прямой контроль над качеством на каждом технологическом переделе.</p>
+        <div class="prod-card__specs">
+          <div class="prod-spec">
+            <span class="prod-spec__k">Метод</span>
+            <span class="prod-spec__v">Порошковая металлургия</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Переделы</span>
+            <span class="prod-spec__v">Подготовка → Прессование → Спекание → Обработка</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Форматы поставки</span>
+            <span class="prod-spec__v">Стандарт, по чертежу, по ТЗ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <h3>Контроль качества</h3>
+        <p>Каждая партия продукции проходит контроль по ГОСТ и внутренним ТУ: измерение твёрдости, плотности, прочности на изгиб. На продукцию оформляются паспорта качества. Сертификаты соответствия и протоколы испытаний предоставляются по запросу.</p>
+        <div class="prod-card__specs">
+          <div class="prod-spec">
+            <span class="prod-spec__k">Основной стандарт</span>
+            <span class="prod-spec__v">ГОСТ 3882-74, ГОСТ 26015-83</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Контрольные параметры</span>
+            <span class="prod-spec__v">HRA, ρ, σизг, состав</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Документация</span>
+            <span class="prod-spec__v">Паспорт + сертификат с каждой партией</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <h3>Технические компетенции</h3>
+        <p>Инженерно-технический состав завода обеспечивает консультации по выбору марки, сортамента и формы поставки под конкретную задачу. Возможна разработка и производство изделий по чертежам и техническим заданиям заказчика.</p>
+        <div class="prod-card__specs">
+          <div class="prod-spec">
+            <span class="prod-spec__k">Консультации</span>
+            <span class="prod-spec__v">Подбор марки под ТЗ</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Индивидуальный заказ</span>
+            <span class="prod-spec__v">По чертежу заказчика</span>
+          </div>
+          <div class="prod-spec">
+            <span class="prod-spec__k">Срок ответа</span>
+            <span class="prod-spec__v">1 рабочий день</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCATION ═══ -->
+<section class="location-section">
+  <div class="container">
+    <div class="location-layout">
+      <div class="location-text">
+        <div class="section-label">Расположение</div>
+        <h2 class="section-title">Владикавказ, Республика Северная Осетия — Алания</h2>
+        <p>Завод расположен во Владикавказе — промышленном центре Республики Северная Осетия — Алания. Регион имеет развитую транспортную инфраструктуру: <strong>федеральная трасса Р-217</strong>, железнодорожное сообщение, международный аэропорт Беслан. Географическое положение обеспечивает логистику как в центральные регионы России, так и в страны СНГ.</p>
+        <p>Производственная площадка предприятия функционирует в рамках существующих промышленных мощностей города, сформированных ещё в советский период и планомерно поддерживаемых в рабочем состоянии.</p>
+        <a href="/contacts.html" class="link-arrow" style="margin-top:8px;display:inline-flex;">Посмотреть контакты и карту →</a>
+      </div>
+
+      <div>
+        <div class="contact-block">
+          <div class="contact-block__label">Реквизиты и адрес</div>
+          <div class="contact-row">
+            <div class="contact-row__key">Полное наименование</div>
+            <div class="contact-row__val">Акционерное общество «Победит»</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row__key">Юридический адрес</div>
+            <div class="contact-row__val">362000, РСО-Алания, г. Владикавказ</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row__key">Год основания</div>
+            <div class="contact-row__val" style="font-family:var(--mono);font-size:16px;font-weight:700;">1948</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row__key">Телефон</div>
+            <div class="contact-row__val"><a href="tel:+78672000000">+7 (8672) 00-00-00</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row__key">Email</div>
+            <div class="contact-row__val"><a href="mailto:info@pobedit.ru">info@pobedit.ru</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+<section class="certs-section">
+  <div class="container">
+    <div class="certs-layout">
+      <div class="certs-text">
+        <div class="section-label">Стандарты и сертификаты</div>
+        <h2 class="section-title">Нормативная база и качество</h2>
+        <p>Производство ведётся в соответствии с действующими государственными стандартами (ГОСТ) и внутренними техническими условиями (ТУ). Система менеджмента качества охватывает все стадии производственного цикла — от входного контроля сырья до приёмо-сдаточных испытаний готовой продукции. Вся документация — сертификаты, паспорта, протоколы — предоставляется покупателю в открытом доступе.</p>
+        <a href="document.html" class="link-arrow" style="margin-top:16px;display:inline-flex;">Скачать документацию →</a>
+      </div>
+
+      <div class="cert-badges">
+        <div class="cert-badge">
+          <div class="cert-badge__code">ГОСТ 3882-74</div>
+          <div class="cert-badge__name">Твёрдые спечённые сплавы. Марки и применение</div>
+          <div class="cert-badge__status"><span class="cert-badge__dot"></span>Действующий</div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-badge__code">ГОСТ 26015-83</div>
+          <div class="cert-badge__name">Тяжёлые вольфрамовые сплавы. Технические условия</div>
+          <div class="cert-badge__status"><span class="cert-badge__dot"></span>Действующий</div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-badge__code">ГОСТ 19671-91</div>
+          <div class="cert-badge__name">Прутки вольфрамовые. Технические условия</div>
+          <div class="cert-badge__status"><span class="cert-badge__dot"></span>Действующий</div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-badge__code">СМК / ТУ</div>
+          <div class="cert-badge__name">Система менеджмента качества. Внутренние ТУ предприятия</div>
+          <div class="cert-badge__status"><span class="cert-badge__dot"></span>Действующий</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS BLOCK ═══ -->
+<section class="partners-section">
+  <div class="container">
+    <div class="partners-layout">
+      <div class="partners-text">
+        <div class="section-label">Сотрудничество</div>
+        <h2 class="section-title">Для партнёров и поставщиков</h2>
+        <p>АО «Победит» открыто для прямого взаимодействия с промышленными предприятиями, закупочными службами и техническими специалистами. Мы работаем напрямую — без посредников — с заводами, нефтегазовыми компаниями, предприятиями ВПК, машиностроения и горнодобывающей отрасли.</p>
+        <p>Для получения коммерческого предложения или технической консультации свяжитесь с нами по одному из каналов ниже или воспользуйтесь формой запроса КП.</p>
+        <a href="/rfq.html" class="btn btn-primary btn-lg" style="margin-top:8px;">Запросить КП</a>
+      </div>
+
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card__info">
+            <h4>Коммерческий отдел</h4>
+            <p>Заявки, коммерческие предложения, ценообразование</p>
+          </div>
+          <a href="mailto:sales@pobedit.ru" class="link-arrow" style="font-size:13px;white-space:nowrap;">sales@pobedit.ru →</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card__info">
+            <h4>Технический отдел</h4>
+            <p>Консультации по маркам, ТЗ, подбор под задачу</p>
+          </div>
+          <a href="mailto:tech@pobedit.ru" class="link-arrow" style="font-size:13px;white-space:nowrap;">tech@pobedit.ru →</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card__info">
+            <h4>Документация</h4>
+            <p>ГОСТ, ТУ, сертификаты, паспорта качества</p>
+          </div>
+          <a href="document.html" class="link-arrow" style="font-size:13px;white-space:nowrap;">Открыть раздел →</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card__info">
+            <h4>Партнёрам и дилерам</h4>
+            <p>Условия сотрудничества, дилерские программы</p>
+          </div>
+          <a href="/partners" class="link-arrow" style="font-size:13px;white-space:nowrap;">Подробнее →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__inner">
+      <h2>Нужна консультация или<br>коммерческое предложение?</h2>
+      <p>Ответим на технический запрос и подберём подходящую марку под вашу задачу.</p>
+      <div class="cta-band__buttons">
+        <a href="/rfq.html" class="btn btn-primary btn-lg">Запросить КП</a>
+        <a href="/contacts.html" class="btn btn-ghost btn-lg">Написать нам</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">АО «Победит»<span>с 1948 года</span></div>
+        <p>Производитель изделий из вольфрама, молибдена, твёрдых и тяжёлых сплавов. г. Владикавказ, Республика Северная Осетия — Алания.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Продукция</h5>
+        <ul>
+          <li><a href="catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тугоплавкие металлы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тяжёлые сплавы</a></li>
+          <li><a href="/products.html">Весь каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="/about.html">О заводе</a></li>
+          <li><a href="/production">Производство</a></li>
+          <li><a href="/quality.html">Контроль качества</a></li>
+          <li><a href="/news.html">Новости</a></li>
+          <li><a href="contacts.html">Карьера</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Документация</h5>
+        <ul>
+          <li><a href="document.html">Все документы</a></li>
+          <li><a href="quality.html#gost">ГОСТ</a></li>
+          <li><a href="quality.html#tu">Технические условия</a></li>
+          <li><a href="quality.html#certs">Сертификаты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="/contacts.html">Контакты</a></li>
+          <li><a href="/rfq.html">Запрос КП</a></li>
+          <li><a href="/partners">Партнёрам</a></li>
+          <li><a href="/industries.html">Отрасли</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 АО «Победит». Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="contacts.html">Правовая информация</a>
+        <a href="/legal/privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

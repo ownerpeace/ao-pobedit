@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог продукции — АО «Победит»</title>
+  <link rel="icon" type="image/svg+xml" href="ao-pobedit-ord--600.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0B1728;
+      --navy-d:  #1E2D42;
+      --offwhite:#F5F5F3;
+      --slate50: #F0F2F5;
+      --text:    #111827;
+      --text2:   #6B7280;
+      --text3:   #9CA3AF;
+      --amber:   #D97706;
+      --border:  #E5E7EB;
+      --cont:    1280px;
+    }
+
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--cont);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── NAVIGATION ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex; align-items: center;
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
+    }
+    .nav__logo {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+      display: flex; flex-direction: column; line-height: 1.15;
+    }
+    .nav__logo span {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text2);
+    }
+    .nav__links { display: flex; gap: 32px; list-style: none; }
+    .nav__links a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text2); transition: color 0.15s;
+    }
+    .nav__links a:hover, .nav__links a.active { color: var(--text); }
+    .nav__links a.active { border-bottom: 2px solid var(--amber); padding-bottom: 2px; }
+
+    .btn {
+      display: inline-block; padding: 10px 24px;
+      font-size: 14px; font-weight: 600; border-radius: 3px; cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn-primary { background: var(--amber); color: #fff; border: 1.5px solid var(--amber); }
+    .btn-primary:hover { background: #B45309; border-color: #B45309; }
+
+    /* Dropdown menu */
+    .nav__item { position: relative; }
+    .nav__submenu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--border); border-radius: 4px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.2s ease; margin-top: 8px; z-index: 10; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+    .nav__item:hover .nav__submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav__submenu li { list-style: none; }
+    .nav__submenu a { display: block; padding: 10px 16px; font-size: 13px; text-transform: none; letter-spacing: 0; color: var(--text2); text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .nav__submenu a:hover { background: var(--slate50); color: var(--text); }
+    
+    .nav__toggle { display: none; background: none; border: none; cursor: pointer; width: 24px; height: 24px; }
+    .nav__toggle span { display: block; width: 100%; height: 2px; background: var(--text); margin: 5px 0; }
+
+    @media (max-width: 768px) {
+      .nav { height: auto; padding: 12px 0; }
+      .nav__inner { gap: 16px; }
+      .nav__toggle { display: block; order: 3; }
+      .nav__links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+      .nav__links.active { display: flex; }
+      .nav__links li { border-bottom: 1px solid var(--border); }
+      .nav__links a { display: block; padding: 12px 16px; }
+      .nav__submenu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; margin: 0; padding: 8px 0 8px 24px; background: var(--slate50); max-height: 0; overflow: hidden; }
+      .nav__submenu.active { max-height: 500px; }
+      .container { padding: 0 16px; }
+      section { padding: 40px 0; }
+    }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--text); }
+    .btn-secondary:hover { background: var(--text); color: #fff; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-lg { padding: 14px 32px; font-size: 15px; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: var(--offwhite);
+      padding: 48px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text2); margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--text2); transition: color 0.15s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb__sep { color: var(--text3); font-size: 12px; }
+    .breadcrumb__current { color: var(--text); font-weight: 500; }
+
+    .page-header__inner {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
+    }
+    .page-header h1 {
+      font-size: 48px; font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 17px; line-height: 1.65; color: var(--text2); max-width: 540px;
+    }
+    .page-header__meta {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+      flex-shrink: 0;
+    }
+    .meta-stat {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text2);
+    }
+    .meta-stat__val {
+      font-size: 22px; font-weight: 700; color: var(--text);
+      font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+    }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      position: sticky; top: 68px; z-index: 90;
+    }
+    .filter-bar__inner {
+      display: flex; align-items: center; gap: 0;
+    }
+    .filter-tab {
+      display: inline-block;
+      padding: 16px 24px;
+      font-size: 13px; font-weight: 500;
+      color: var(--text2);
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+    .filter-tab:hover { color: var(--text); }
+    .filter-tab.active { color: var(--text); border-bottom-color: var(--amber); font-weight: 600; }
+
+    /* ─── CATALOG CARDS ─── */
+    .catalog-section { padding: 64px 0 80px; }
+
+    .catalog-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .catalog-card:hover {
+      border-color: var(--amber);
+      box-shadow: 0 2px 16px rgba(217,119,6,0.08);
+    }
+    .catalog-card:last-child { margin-bottom: 0; }
+
+    .catalog-card__inner {
+      display: grid;
+      grid-template-columns: 72px 1fr 320px;
+      gap: 0;
+    }
+
+    /* Left: number column */
+    .catalog-card__num-col {
+      padding: 40px 0 40px 40px;
+      display: flex; flex-direction: column; align-items: flex-start;
+      border-right: 1px solid var(--border);
+    }
+    .catalog-card__num {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text3); font-variant-numeric: tabular-nums;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      margin-top: 8px;
+    }
+
+    /* Center: content */
+    .catalog-card__body { padding: 40px 48px; }
+    .catalog-card__body h2 {
+      font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 14px; line-height: 1.2;
+    }
+    .catalog-card__body p {
+      font-size: 16px; line-height: 1.7; color: var(--text2);
+      margin-bottom: 24px; max-width: 560px;
+    }
+    .spec-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+    .spec-tag {
+      display: inline-block; padding: 4px 12px;
+      background: var(--slate50); border: 1px solid var(--border); border-radius: 2px;
+      font-size: 12px; font-weight: 500; color: var(--text2);
+      font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+    }
+    .spec-tag--highlight {
+      border-color: var(--amber); color: #92400E; background: #FFFBEB;
+    }
+
+    .applications { margin-bottom: 28px; }
+    .applications__label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 10px;
+    }
+    .applications__list {
+      display: flex; flex-wrap: wrap; gap: 8px; list-style: none;
+    }
+    .applications__list li {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--text2);
+    }
+    .applications__list li::before {
+      content: ''; display: block; width: 4px; height: 4px;
+      background: var(--amber); border-radius: 50%; flex-shrink: 0;
+    }
+    .link-arrow {
+      font-size: 14px; font-weight: 600; color: var(--amber);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap 0.15s;
+    }
+    .link-arrow:hover { gap: 10px; }
+
+    /* Right: data panel */
+    .catalog-card__panel {
+      background: var(--slate50);
+      border-left: 1px solid var(--border);
+      padding: 40px 32px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .panel-block__label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+    }
+    .panel-block__val {
+      font-size: 14px; font-weight: 500; color: var(--text);
+      font-variant-numeric: tabular-nums; line-height: 1.6;
+    }
+    .panel-block__val.mono {
+      font-family: 'Courier New', monospace; font-size: 13px;
+    }
+    .panel-divider { height: 1px; background: var(--border); }
+    .panel-cta { margin-top: auto; }
+
+    /* ─── STANDARDS TABLE ─── */
+    .standards-section {
+      background: #fff;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 32px; font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.02em; color: var(--text); margin-bottom: 40px;
+    }
+    .standards-table { width: 100%; border-collapse: collapse; }
+    .standards-table thead tr {
+      background: var(--slate50);
+      border-bottom: 2px solid var(--border);
+    }
+    .standards-table th {
+      padding: 12px 20px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text2);
+      text-align: left;
+    }
+    .standards-table td {
+      padding: 14px 20px;
+      font-size: 14px; color: var(--text);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .standards-table tr:last-child td { border-bottom: none; }
+    .standards-table tr:hover td { background: var(--slate50); }
+    .standards-table td.mono {
+      font-family: 'Courier New', monospace; font-size: 13px;
+      color: var(--text); font-weight: 500;
+    }
+    .standards-table td .doc-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 13px; color: var(--amber); font-weight: 500;
+    }
+
+    /* ─── HOW TO ORDER ─── */
+    .order-section {
+      background: var(--slate50);
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .order-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      background: var(--border);
+    }
+    .order-step {
+      background: #fff; padding: 40px 36px;
+      display: flex; flex-direction: column; gap: 16px;
+      position: relative;
+    }
+    .order-step__num {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3);
+      font-variant-numeric: tabular-nums;
+    }
+    .order-step__icon {
+      width: 36px; height: 36px; color: var(--amber);
+    }
+    .order-step h4 {
+      font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3;
+    }
+    .order-step p {
+      font-size: 15px; line-height: 1.65; color: var(--text2);
+    }
+    .order-step__arrow {
+      position: absolute; right: -13px; top: 50%;
+      transform: translateY(-50%);
+      width: 24px; height: 24px;
+      background: var(--amber); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1;
+    }
+    .order-step:last-child .order-step__arrow { display: none; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--navy); padding: 80px 0; position: relative;
+    }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .cta-band__inner { position: relative; text-align: center; }
+    .cta-band h2 {
+      font-size: 38px; font-weight: 700; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 16px; line-height: 1.2;
+    }
+    .cta-band p { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
+    .cta-band__buttons { display: flex; gap: 12px; justify-content: center; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-d);
+      padding: 64px 0 48px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 56px;
+    }
+    .footer-brand p {
+      font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.4);
+      margin-top: 12px; max-width: 260px;
+    }
+    .footer-brand__logo {
+      font-size: 18px; font-weight: 700; color: #fff;
+      display: flex; flex-direction: column; line-height: 1.15;
+    }
+    .footer-brand__logo span {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+    }
+    .footer-col h5 {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; border-top: 1px solid var(--navy-d);
+    }
+    .footer-bottom p, .footer-bottom a { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+    .footer-legal { display: flex; gap: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="ao-pobedit-ord--600.svg" alt="АО Победит" style="height: 40px; margin-right: 10px;">
+        <div>
+          АО «Победит»
+          <span>Твёрдые сплавы · Инструмент · Изделия</span>
+        </div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="/products.html" class="active">Продукция</a></li>
+        <li><a href="/industries.html">Отрасли</a></li>
+        <li><a href="/about.html">О заводе</a></li>
+        <li><a href="document.html">Документация</a></li>
+        <li><a href="/contacts.html">Контакты</a></li>
+      
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/rfq.html" class="btn btn-primary">Запросить КП</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/index.html">Главная</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">Продукция</span>
+    </div>
+    <div class="page-header__inner">
+      <div>
+        <h1>Каталог продукции</h1>
+        <p>Три направления производства — тугоплавкие металлы, твёрдые и тяжёлые сплавы. Полный производственный цикл, контроль качества по ГОСТ/ТУ, технические консультации по выбору марки.</p>
+      </div>
+      <div class="page-header__meta">
+        <div class="meta-stat">
+          <div>
+            <div class="meta-stat__val">3</div>
+            <div style="font-size:12px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;font-weight:500;">направления</div>
+          </div>
+        </div>
+        <div class="meta-stat">
+          <div>
+            <div class="meta-stat__val">70+</div>
+            <div style="font-size:12px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;font-weight:500;">лет производства</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FILTER BAR ═══ -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-bar__inner">
+      <a href="#all" class="filter-tab active">Все направления</a>
+      <a href="#hard-alloys" class="filter-tab">Твёрдые сплавы</a>
+      <a href="#refractory" class="filter-tab">Тугоплавкие металлы</a>
+      <a href="#heavy-alloys" class="filter-tab">Тяжёлые сплавы</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATALOG CARDS ═══ -->
+<section class="catalog-section" id="all">
+  <div class="container">
+
+    <!-- Card 01: Твёрдые сплавы -->
+    <div class="catalog-card" id="hard-alloys">
+      <div class="catalog-card__inner">
+        <div class="catalog-card__num-col">
+          <span class="catalog-card__num">01</span>
+        </div>
+        <div class="catalog-card__body">
+          <h2>Твёрдые сплавы</h2>
+          <p>Спечённые металлокерамические материалы на основе карбидов вольфрама (WC) с кобальтовой связкой. Обеспечивают исключительную твёрдость (86–92 HRA), износостойкость и работоспособность при температурах до 900 °C. Применяются в режущем, буровом и штамповочном инструменте, а также в деталях, работающих в условиях интенсивного износа.</p>
+          <div class="spec-tags">
+            <span class="spec-tag spec-tag--highlight">ВК6</span>
+            <span class="spec-tag spec-tag--highlight">ВК8</span>
+            <span class="spec-tag spec-tag--highlight">ВК10</span>
+            <span class="spec-tag">Т5К10</span>
+            <span class="spec-tag">Т15К6</span>
+            <span class="spec-tag">Т30К4</span>
+            <span class="spec-tag">ТТ7К12</span>
+            <span class="spec-tag">ТТ10К8Б</span>
+          </div>
+          <div class="applications">
+            <div class="applications__label">Применение</div>
+            <ul class="applications__list">
+              <li>Режущий инструмент для металлообработки</li>
+              <li>Буровой инструмент для горнодобывающей отрасли</li>
+              <li>Штампы и пресс-формы высокой точности</li>
+              <li>Детали насосов и клапанов нефтегазового оборудования</li>
+            </ul>
+          </div>
+          <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+        </div>
+        <div class="catalog-card__panel">
+          <div>
+            <div class="panel-block__label">Основа</div>
+            <div class="panel-block__val">WC + Co (карбид вольфрама)</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">Твёрдость</div>
+            <div class="panel-block__val mono">86 – 92 HRA</div>
+          </div>
+          <div>
+            <div class="panel-block__label">Содержание Co</div>
+            <div class="panel-block__val mono">4 – 15 %</div>
+          </div>
+          <div>
+            <div class="panel-block__label">Плотность</div>
+            <div class="panel-block__val mono">13,9 – 15,1 г/см³</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">Стандарты</div>
+            <div class="panel-block__val mono">ГОСТ 3882-74<br>ГОСТ 28705-90<br>ТУ 1990-xxx</div>
+          </div>
+          <div class="panel-cta">
+            <a href="/rfq?cat=hard-alloys" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Запросить КП</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 02: Тугоплавкие металлы -->
+    <div class="catalog-card" id="refractory">
+      <div class="catalog-card__inner">
+        <div class="catalog-card__num-col">
+          <span class="catalog-card__num">02</span>
+        </div>
+        <div class="catalog-card__body">
+          <h2>Тугоплавкие металлы</h2>
+          <p>Изделия из технически чистого вольфрама (W) и молибдена (Mo) в виде прутков, листов, лент, проволоки, тиглей и трубок. Вольфрам обладает наивысшей температурой плавления среди металлов (3 422 °C), молибден — исключительной прочностью при высоких температурах. Продукция востребована в вакуумных технологиях, электронике, металлургии и термическом оборудовании.</p>
+          <div class="spec-tags">
+            <span class="spec-tag spec-tag--highlight">Вольфрам W</span>
+            <span class="spec-tag spec-tag--highlight">Молибден Mo</span>
+            <span class="spec-tag">Прутки</span>
+            <span class="spec-tag">Листы / Ленты</span>
+            <span class="spec-tag">Проволока</span>
+            <span class="spec-tag">Тигли</span>
+            <span class="spec-tag">Трубки</span>
+          </div>
+          <div class="applications">
+            <div class="applications__label">Применение</div>
+            <ul class="applications__list">
+              <li>Нагревательные элементы и экраны вакуумных печей</li>
+              <li>Тигли и лодочки для испарения в электронике</li>
+              <li>Электроды для плазменного и электродугового оборудования</li>
+              <li>Радиационная защита в медицинском оборудовании</li>
+            </ul>
+          </div>
+          <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+        </div>
+        <div class="catalog-card__panel">
+          <div>
+            <div class="panel-block__label">Материалы</div>
+            <div class="panel-block__val">Вольфрам (W), Молибден (Mo)</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">T плавления W</div>
+            <div class="panel-block__val mono">3 422 °C</div>
+          </div>
+          <div>
+            <div class="panel-block__label">T плавления Mo</div>
+            <div class="panel-block__val mono">2 623 °C</div>
+          </div>
+          <div>
+            <div class="panel-block__label">Чистота</div>
+            <div class="panel-block__val mono">99,5 – 99,95 %</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">Стандарты</div>
+            <div class="panel-block__val mono">ГОСТ 19671-91<br>ГОСТ 18904-90<br>ГОСТ 25442-90</div>
+          </div>
+          <div class="panel-cta">
+            <a href="/rfq?cat=refractory" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Запросить КП</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 03: Тяжёлые сплавы -->
+    <div class="catalog-card" id="heavy-alloys">
+      <div class="catalog-card__inner">
+        <div class="catalog-card__num-col">
+          <span class="catalog-card__num">03</span>
+        </div>
+        <div class="catalog-card__body">
+          <h2>Тяжёлые сплавы</h2>
+          <p>Вольфрам-никель-медные (ВНМ) и вольфрам-никель-железные (ВНЖ) сплавы с содержанием вольфрама 90–97%. Плотность 17,0–18,5 г/см³ — в 2,4 раза выше, чем у стали. Обеспечивают радиационную защиту, балансировку и конструктивное утяжеление в компактных объёмах. Изготавливаются в виде блоков, пластин, дисков, цилиндров и деталей нестандартной формы.</p>
+          <div class="spec-tags">
+            <span class="spec-tag spec-tag--highlight">ВНЖ-90</span>
+            <span class="spec-tag spec-tag--highlight">ВНЖ-93</span>
+            <span class="spec-tag spec-tag--highlight">ВНЖ-95</span>
+            <span class="spec-tag">ВНМ-95</span>
+            <span class="spec-tag">ВГ-15</span>
+            <span class="spec-tag">Блоки</span>
+            <span class="spec-tag">Пластины</span>
+            <span class="spec-tag">Диски</span>
+          </div>
+          <div class="applications">
+            <div class="applications__label">Применение</div>
+            <ul class="applications__list">
+              <li>Балансировочные грузы авиационных и судовых систем</li>
+              <li>Защитные экраны от гамма-излучения (медицина, АЭС)</li>
+              <li>Детали точного приборостроения и ВПК</li>
+              <li>Инерционные элементы буровых и нефтегазовых систем</li>
+            </ul>
+          </div>
+          <a href="catalog-hard-alloys.html" class="link-arrow">Смотреть каталог →</a>
+        </div>
+        <div class="catalog-card__panel">
+          <div>
+            <div class="panel-block__label">Система</div>
+            <div class="panel-block__val">W–Ni–Fe (ВНЖ), W–Ni–Cu (ВНМ)</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">Содержание W</div>
+            <div class="panel-block__val mono">90 – 97 %</div>
+          </div>
+          <div>
+            <div class="panel-block__label">Плотность</div>
+            <div class="panel-block__val mono">17,0 – 18,5 г/см³</div>
+          </div>
+          <div>
+            <div class="panel-block__label">Твёрдость</div>
+            <div class="panel-block__val mono">24 – 32 HRC</div>
+          </div>
+          <div class="panel-divider"></div>
+          <div>
+            <div class="panel-block__label">Стандарты</div>
+            <div class="panel-block__val mono">ГОСТ 26015-83<br>ТУ 48-19-316<br>ТУ 48-19-315</div>
+          </div>
+          <div class="panel-cta">
+            <a href="/rfq?cat=heavy-alloys" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Запросить КП</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ STANDARDS REFERENCE ═══ -->
+<section class="standards-section">
+  <div class="container">
+    <div class="section-label">Нормативная база</div>
+    <h2 class="section-title">Применяемые стандарты и технические условия</h2>
+    <table class="standards-table">
+      <thead>
+        <tr>
+          <th>Направление</th>
+          <th>Документ</th>
+          <th>Область применения</th>
+          <th>Статус</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Твёрдые сплавы</strong></td>
+          <td class="mono">ГОСТ 3882-74</td>
+          <td>Твёрдые спечённые сплавы. Марки и применение</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-3882" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="mono">ГОСТ 28705-90</td>
+          <td>Пластины из твёрдых сплавов для режущих инструментов</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-28705" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Тугоплавкие металлы</strong></td>
+          <td class="mono">ГОСТ 19671-91</td>
+          <td>Прутки вольфрамовые. Технические условия</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-19671" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="mono">ГОСТ 18904-90</td>
+          <td>Листы и ленты молибденовые. Технические условия</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-18904" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="mono">ГОСТ 25442-90</td>
+          <td>Проволока вольфрамовая для источников света</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-25442" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Тяжёлые сплавы</strong></td>
+          <td class="mono">ГОСТ 26015-83</td>
+          <td>Сплавы вольфрамовые тяжёлые. Технические условия</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#gost-26015" class="doc-link">Скачать →</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="mono">ТУ 48-19-316</td>
+          <td>Изделия из тяжёлых вольфрамовых сплавов ВНЖ</td>
+          <td><span style="color:#16A34A;font-size:13px;font-weight:600;">Действующий</span></td>
+          <td><a href="quality.html#tu-48-19-316" class="doc-link">Скачать →</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:24px;">
+      <a href="document.html" class="link-arrow">Все документы в разделе «Документация» →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO ORDER ═══ -->
+<section class="order-section">
+  <div class="container">
+    <div class="section-label">Как заказать</div>
+    <h2 class="section-title" style="margin-bottom:48px;">Три шага до поставки</h2>
+    <div class="order-steps">
+      <div class="order-step">
+        <div class="order-step__num">Шаг 01</div>
+        <h4>Выберите марку</h4>
+        <p>Найдите нужную позицию в каталоге или опишите техническое задание — подберём марку и сортамент под вашу задачу.</p>
+        <div class="order-step__arrow">
+          </div>
+      </div>
+      <div class="order-step">
+        <div class="order-step__num">Шаг 02</div>
+        <h4>Запросите КП</h4>
+        <p>Заполните форму запроса КП — укажите марку, количество, сроки. Ответим в течение 1 рабочего дня с расчётом и условиями поставки.</p>
+        <div class="order-step__arrow">
+          </div>
+      </div>
+      <div class="order-step">
+        <div class="order-step__num">Шаг 03</div>
+        <h4>Получите консультацию</h4>
+        <p>Технические специалисты ответят на вопросы по применению, помогут с выбором марки и согласуют условия поставки и документацию.</p>
+        <div class="order-step__arrow">
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__inner">
+      <h2>Нужна консультация или<br>коммерческое предложение?</h2>
+      <p>Ответим на технический запрос и подберём подходящую марку под вашу задачу.</p>
+      <div class="cta-band__buttons">
+        <a href="/rfq.html" class="btn btn-primary btn-lg">Запросить КП</a>
+        <a href="/contacts.html" class="btn btn-ghost btn-lg">Написать нам</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">
+          АО «Победит»
+          <span>с 1948 года</span>
+        </div>
+        <p>Производитель изделий из вольфрама, молибдена, твёрдых и тяжёлых сплавов. г. Владикавказ, Республика Северная Осетия — Алания.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Продукция</h5>
+        <ul>
+          <li><a href="catalog-hard-alloys.html">Твёрдые сплавы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тугоплавкие металлы</a></li>
+          <li><a href="catalog-hard-alloys.html">Тяжёлые сплавы</a></li>
+          <li><a href="/products.html">Весь каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="/about.html">О заводе</a></li>
+          <li><a href="/production">Производство</a></li>
+          <li><a href="/quality.html">Контроль качества</a></li>
+          <li><a href="/news.html">Новости</a></li>
+          <li><a href="contacts.html">Карьера</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Документация</h5>
+        <ul>
+          <li><a href="document.html">Все документы</a></li>
+          <li><a href="quality.html#gost">ГОСТ</a></li>
+          <li><a href="quality.html#tu">Технические условия</a></li>
+          <li><a href="quality.html#certs">Сертификаты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="/contacts.html">Контакты</a></li>
+          <li><a href="/rfq.html">Запрос КП</a></li>
+          <li><a href="/partners">Партнёрам</a></li>
+          <li><a href="/industries.html">Отрасли</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 АО «Победит». Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="contacts.html">Правовая информация</a>
+        <a href="/legal/privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
